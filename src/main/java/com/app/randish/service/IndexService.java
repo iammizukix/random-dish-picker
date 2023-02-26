@@ -4,8 +4,9 @@ import com.app.randish.entity.DishEntity;
 import com.app.randish.repository.DishRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -13,10 +14,10 @@ public class IndexService {
     @Autowired
     DishRepository dishRepository;
 
-    public String getRandDishName() {
-        long count = dishRepository.count();
+    public DishEntity getRandDish() {
+        List<DishEntity> dishes = dishRepository.findAll();
+        int count = dishes.size();
         int idx = (int) (Math.random() * count);
-        DishEntity dish = dishRepository.findAll(PageRequest.of(idx, 1)).getContent().get(0);
-        return dish.getName();
+        return dishes.get(idx);
     }
 }

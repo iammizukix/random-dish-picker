@@ -9,11 +9,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!--    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">-->
     <script src="https://kit.fontawesome.com/e7adf509d3.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        function pick(){
-            location.href = '/random'
-        }
-    </script>
 </head>
 <body>
 
@@ -25,7 +20,7 @@
                 <p class="lead mb-4">Push the button to pick a dish as random.</p>
                 <div class="fs-1 p-5 mb-4 border border-2" th:text="${dish.name}"></div>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" th:onclick="pick()">Pick!</button>
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" th:onclick="location.href='/index/random'">Pick!</button>
                 </div>
             </div>
         </div>

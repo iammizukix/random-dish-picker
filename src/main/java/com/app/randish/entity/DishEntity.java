@@ -19,10 +19,10 @@ public class DishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "dish")
-    private List<DishFoodEntity> dishFoods;
+    private List<DishFoodEntity> dishFoodList;
 }
 

@@ -6,6 +6,7 @@ import com.app.randish.repository.DishRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,10 +23,21 @@ public class DishService {
     public DishDto getRandDish() {
         List<DishEntity> dishes = dishRepository.findAll();
         int count = dishes.size();
-        if(count == 0){
+        if (count == 0) {
             return new DishDto();
         }
         int idx = (int) (Math.random() * count);
         return DishDto.convert(dishes.get(idx));
+    }
+
+    public void create(DishDto form) {
+        DishEntity dish = new DishEntity();
+        dish.setName(form.getName());
+        dishRepository.save(dish);
+    }
+
+    @Transactional
+    public void removeById(Integer id) {
+        dishRepository.deleteById(id);
     }
 }

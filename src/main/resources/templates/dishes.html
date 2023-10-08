@@ -9,11 +9,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">-->
     <script src="https://kit.fontawesome.com/e7adf509d3.js" crossorigin="anonymous"></script>
-    <!--    <script type="text/javascript">-->
-    <!--        function pick(){-->
-    <!--            location.href = '/random'-->
-    <!--        }-->
-    <!--    </script>-->
 </head>
 <body>
 
@@ -21,14 +16,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createModalLabel">New Dish</h5>
+                <h5 class="modal-title" id="createModalLabel">Create New Dish</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/dishes/create}" method="post" id="create-form">
+                <form th:action="@{/dishes/create}" method="post" id="create-form" th:object="${form}">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="例）肉じゃが">
+                        <label for="dishName" class="form-label">Name</label>
+                        <input type="text" name="dishName" class="form-control" id="dishName"
+                               placeholder="例）肉じゃが" th:field="*{name}">
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 package com.app.randish.controller;
 
 
-import com.app.randish.entity.DishEntity;
+import com.app.randish.dto.DishDto;
 import com.app.randish.service.DishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -22,20 +21,21 @@ public class IndexController {
 
     @GetMapping
     public String index(
-            Model model,
-            @ModelAttribute("dish") DishEntity dish
+            Model model
     ) {
         log.info("Top screen is displayed.");
+        model.addAttribute("dish", new DishDto());
         return "index";
     }
 
     @GetMapping("/random")
     public String random(
-            RedirectAttributes redirectAttributes
+            Model model,
+            @ModelAttribute("dish") DishDto dish
     ) {
         log.info("Random dish is just picked.");
-        redirectAttributes.addAttribute("dish", dishService.getRandDish());
-        return "redirect:index";
+        model.addAttribute("dish", dishService.getRandDish());
+        return "index";
     }
 
 
